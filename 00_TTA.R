@@ -4,9 +4,10 @@ data.OSPAR <- read.table("F:/Bureau/COMPEAT_20062014_Data.txt", sep="\t", dec=".
 ##Change the date format (concatenate year, month and day column in yyyy-mm-dd format)
 data.OSPAR$Dates <- paste0(data.OSPAR$Year,"-",sprintf("%02d",data.OSPAR$Month),"-",sprintf("%02d",data.OSPAR$Day))
 
-##Change the name of the column which contain the categories to analyse (2 possibilities : analyse by cruises [1st choice] or by stations[2d choice])
+##Change the name of the column which contain the categories to analyse (2 possibilities : analyse by cruises [1st choice], by stations[2d choice] or by assessment units [3d choice])
 names(data.OSPAR)[match("Cruise", names(data.OSPAR))] <- "Category"
- #names(data.OSPAR)[match("Station", names(data.OSPAR))] <- "Category"
+names(data.OSPAR)[match("Station", names(data.OSPAR))] <- "Category"
+names(data.OSPAR)[match("AssessmentUnit.METAVAR.TEXT", names(data.OSPAR))] <- "Category"
 
 ##Change salinity column name for TTA compatibility
 names(data.OSPAR)[grep("Salinity", names(data.OSPAR))] <- "Salinity"
